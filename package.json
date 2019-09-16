@@ -4,7 +4,21 @@
   "description": "Lynzi",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node server/index.js"
+    "dev:server": "nodemon --exec babel-node server/index.js",
+    "lint": "eslint 'server/**/*.js' --fix",
+    "format": "prettier-eslint 'server/**/*.{js,json}' --write"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "repository": "https://github.com/dcDalin/lynzi.git",
   "author": "dcDalin <mcdalinoluoch@gmail.com>",
@@ -15,6 +29,13 @@
     "@babel/node": "^7.6.1",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
-    "nodemon": "^1.19.2"
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "nodemon": "^1.19.2",
+    "prettier-eslint-cli": "^5.0.0"
   }
 }
