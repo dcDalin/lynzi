@@ -1,22 +1,33 @@
 /* eslint-disable no-console */
 
 import express from 'express';
-import bodyParser from 'body-parser';
-import constants from './config/constants';
+import { ApolloServer } from 'apollo-server-express';
+import config from './config';
 import './config/db';
+import typeDefs from './graphql/typeDefs';
+import resolvers from './graphql/resolvers';
+
+const ENV_VAR = config.get(process.env.NODE_ENV);
+
+const { APP_PORT, PLAYGROUND } = ENV_VAR;
 
 const app = express();
 
 app.disable('x-powered-by');
 
-const { PORT } = constants;
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ req }),
+  playground: PLAYGROUND,
+});
 
-app.use(bodyParser.json());
+server.applyMiddleware({ app });
 
-app.listen(PORT, (err) => {
+app.listen(APP_PORT, (err) => {
   if (err) {
     console.error(err);
   } else {
-    console.log(`App listening on port ${PORT}`);
+    console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`);
   }
 });

@@ -1,18 +1,21 @@
 import mongoose from 'mongoose';
+import config from './index';
 
-import constants from './constants';
+const ENV_VAR = config.get(process.env.NODE_ENV);
+
+const { MONGO_URL } = ENV_VAR;
 
 mongoose.Promise = global.Promise;
 
 mongoose.set('debug', true);
 
 try {
-  mongoose.connect(constants.DB_URL, {
+  mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
 } catch (err) {
-  mongoose.createConnection(constants.DB_URL, {
+  mongoose.createConnection(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
