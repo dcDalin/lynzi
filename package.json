@@ -1,0 +1,9 @@
+{
+  "name": "lynzi",
+  "version": "1.0.0",
+  "description": "Lynzi",
+  "main": "index.js",
+  "repository": "https://github.com/dcDalin/lynzi.git",
+  "author": "dcDalin <mcdalinoluoch@gmail.com>",
+  "license": "MIT"
+}
