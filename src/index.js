@@ -6,6 +6,7 @@ import config from './config';
 import './config/db';
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
+import mocks from './mocks';
 
 const ENV_VAR = config.get(process.env.NODE_ENV);
 
@@ -24,10 +25,12 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-app.listen(APP_PORT, (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`);
-  }
+mocks().then(() => {
+  app.listen(APP_PORT, (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`);
+    }
+  });
 });
