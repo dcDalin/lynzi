@@ -39,10 +39,13 @@
     "prettier-eslint-cli": "^5.0.0"
   },
   "dependencies": {
+    "africastalking": "^0.4.1",
     "apollo-server-express": "^2.9.3",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.1"
   }
 }

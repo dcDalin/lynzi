@@ -4,4 +4,7 @@ export default {
   Query: {
     ...lynzi.Query,
   },
+  Mutation: {
+    ...lynzi.Mutation,
+  },
 };
