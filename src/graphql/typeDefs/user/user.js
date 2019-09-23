@@ -5,6 +5,10 @@ export default gql`
     users: [User]
   }
 
+  extend type Mutation {
+    userSignUp(userSignUpInput: UserSignUpInput): User!
+  }
+
   type Verification {
     isVerified: Boolean!
   }
@@ -15,5 +19,12 @@ export default gql`
     phoneNumber: String!
     token: String
     verification: Verification
+  }
+
+  input UserSignUpInput {
+    username: String!
+    phoneNumber: String!
+    password: String!
+    confirmPassword: String!
   }
 `;
