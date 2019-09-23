@@ -1,5 +1,6 @@
 import users from './queries/users';
 import userSignUp from './mutations/userSignUp';
+import userLogin from './mutations/userLogIn';
 
 export default {
   Query: {
@@ -7,5 +8,6 @@ export default {
   },
   Mutation: {
     ...userSignUp.Mutation,
+    ...userLogin.Mutation,
   },
 };
