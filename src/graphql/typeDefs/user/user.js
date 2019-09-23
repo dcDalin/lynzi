@@ -7,6 +7,7 @@ export default gql`
 
   extend type Mutation {
     userSignUp(userSignUpInput: UserSignUpInput): User!
+    userLogin(phoneNumber: String!, password: String!): User!
   }
 
   type Verification {
